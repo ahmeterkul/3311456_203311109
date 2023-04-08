@@ -59,23 +59,27 @@ class _detayState extends State<detay> {
           color: Colors.black,
           child: Column(
             children: [
+              ////////////////////////////////////////////////VİDEO KISMI//////////////////////////////////////////////////////////
               const Padding(padding: EdgeInsets.only(top: 20)),
               SizedBox(
                 width: 500,
                 height: 250,
                 child: videolar(url: link),
               ),
+              ////////////////////////////////////////////////AÇIKLAMA KISMI//////////////////////////////////////////////////////////
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Padding(padding: EdgeInsets.only(left: 20)),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                         width: 175,
                         child: Image(image: AssetImage(data[1].toString())),
                       ),
+                      Padding(padding:EdgeInsets.only(left:10)),
                       SizedBox(
                         width: 200,
                         height: 600,
@@ -110,7 +114,8 @@ class _detayState extends State<detay> {
       body: Container(
         height: 900,
         decoration: const BoxDecoration(color: Colors.black),
-        child: Row(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               width: 150,
