@@ -125,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const Padding(padding: EdgeInsets.all(20)),
               TextField(
+                obscureText: true,
                 controller: textclearsifre,
                 onChanged: (value) {
                   sifreekle(value);

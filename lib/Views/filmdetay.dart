@@ -79,9 +79,9 @@ class _detayState extends State<detay> {
                         width: 175,
                         child: Image(image: AssetImage(data[1].toString())),
                       ),
-                      Padding(padding:EdgeInsets.only(left:10)),
+                      Padding(padding: EdgeInsets.only(left: 10)),
                       SizedBox(
-                        width: 200,
+                        width: 175,
                         height: 600,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -91,7 +91,7 @@ class _detayState extends State<detay> {
                                     fontSize: 30, color: Colors.white)),
                             const Padding(padding: EdgeInsets.only(top: 10)),
                             SizedBox(
-                                width: 500,
+                                width: 450,
                                 child: Text(data[3].toString(),
                                     style: const TextStyle(
                                         fontSize: 15, color: Colors.white))),
@@ -114,7 +114,8 @@ class _detayState extends State<detay> {
       body: Container(
         height: 900,
         decoration: const BoxDecoration(color: Colors.black),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
@@ -133,7 +134,7 @@ class _detayState extends State<detay> {
               ),
               const Padding(padding: EdgeInsets.only(top: 10)),
               SizedBox(
-                width: 250,
+                width: 175,
                 child: Text(
                   data[3],
                   style: const TextStyle(color: Colors.white),
