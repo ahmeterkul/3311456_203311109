@@ -1,0 +1,56 @@
+name: film_uygulamasi
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.5 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+
+
+  chewie: ^1.4.0
+  google_fonts: ^4.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+
+  assets:
+  - assets/resimler/yenifilmler/luther.jpg
+  - assets/resimler/yenifilmler/murdermystery.jpg
+  - assets/resimler/yenifilmler/killboksoon.jpg
+  - assets/resimler/yenifilmler/oldway.jpg
+  - assets/resimler/yenifilmler/kimbuaile.jpg
+  - assets/resimler/yenifilmler/magicianselephant.jpg
+  - assets/resimler/gelecekfilmler/fastx.jpg
+  - assets/resimler/gelecekfilmler/guardiansofgalaxy.jpg
+  - assets/resimler/gelecekfilmler/mario.jpg
+  - assets/resimler/gelecekfilmler/marvels.jpg
+  - assets/resimler/gelecekfilmler/spiderman.jpg
+  - assets/resimler/populerfilmler/blackadam.jpg
+  - assets/resimler/populerfilmler/moonfall.jpg
+  - assets/resimler/populerfilmler/ripd2.jpg
+  - assets/resimler/populerfilmler/venom.jpg
+  - assets/videolar/blackadam.mp4
+  - assets/videolar/moonfall.mp4
+  - assets/videolar/ripd2.mp4
+  - assets/videolar/venom.mp4
+
+
+
