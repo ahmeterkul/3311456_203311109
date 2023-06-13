@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "157401583203",
+    "project_id": "movieappfirebase-f4baf",
+    "storage_bucket": "movieappfirebase-f4baf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157401583203:android:4404cd3ee68c21f6f7f256",
+        "android_client_info": {
+          "package_name": "com.example.film_uygulamasi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157401583203-9vp1vcujrirt8aa3597evhgb9blhdn28.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOdZOdKxFLY1n4Ti7pjE6aWv2n__QxEwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157401583203-9vp1vcujrirt8aa3597evhgb9blhdn28.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "157401583203-rla39c882673n4b3cgqjl80bke62qebk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.filmUygulamasi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

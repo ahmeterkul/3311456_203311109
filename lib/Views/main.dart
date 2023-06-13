@@ -1,10 +1,17 @@
-import 'package:film_uygulamasi/Views/anasayfa.dart';
-import 'package:flutter/material.dart';
-import 'package:film_uygulamasi/veritabani/sifreler.dart';
-import 'filmdetay.dart';
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
-void main() {
-  runApp(MyApp());
+import 'package:film_uygulamasi/Views/View_Anasayfa/anasayfa.dart';
+import 'package:film_uygulamasi/Views/kaydol.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import '../services/firebase_service.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseService.initializeFirebase();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,27 +37,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String kad = "";
+  String email = "";
   String sifre = "";
   bool buton = false;
   bool giris = true;
   String girishata = "";
-  Map<String, String> sifreler = Passw().sifreler;
-  final textclearkad = TextEditingController();
+  final textclearemail = TextEditingController();
   final textclearsifre = TextEditingController();
 
   void hatamesaji() {
     setState(() {
-      girishata = "Kullanıcı adı veya şifre hatalı.";
-      kad = "";
+      girishata = "E-mail veya şifre hatalı.";
+      email = "";
       sifre = "";
     });
     cleartextareas();
   }
 
-  void kadekle(String value) {
+  void emailekle(String value) {
     setState(() {
-      kad = value;
+      email = value;
       girishata = "";
     });
   }
@@ -63,18 +69,41 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void cleartextareas() {
-    textclearkad.clear();
+    textclearemail.clear();
     textclearsifre.clear();
+  }
+
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    return firebaseApp;
+  }
+
+  static Future<User?> loginUsingEmailPassword(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      user = userCredential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        print("No User found for that email");
+      }
+    }
+    return user;
   }
 
   void anaekranagit() {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => anaekran(),
-            settings: RouteSettings(arguments: kad)));
+            builder: (context) => const anaekran(),
+            settings: RouteSettings(arguments: email)));
     setState(() {
-      kad = "";
+      email = "";
       sifre = "";
     });
     cleartextareas();
@@ -82,83 +111,113 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (kad.length >= 5 && sifre.length >= 5) {
+    if (email.length >= 5 && sifre.length >= 5) {
       buton = true;
     } else {
       buton = false;
     }
-
-    if (sifreler.keys.contains(kad) && sifreler.values.contains(sifre)) {
-      giris = false;
-    } else {
-      giris = true;
-    }
-
     return girisekrani();
   }
 
   Widget girisekrani() {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Movieflix"),
-        backgroundColor: Colors.deepPurple,
-        foregroundColor: Colors.black,
-        centerTitle: true,
-        toolbarHeight: 50,
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Padding(padding: EdgeInsets.all(20)),
-              TextField(
-                controller: textclearkad,
-                onChanged: (value) {
-                  kadekle(value);
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  hintText: "Kullanıcı adı",
-                  fillColor: Colors.purple,
-                ),
-              ),
-              const Padding(padding: EdgeInsets.all(20)),
-              TextField(
-                obscureText: true,
-                controller: textclearsifre,
-                onChanged: (value) {
-                  sifreekle(value);
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  hintText: "Şifre",
-                  fillColor: Colors.purple,
-                ),
-              ),
-              const Padding(padding: EdgeInsets.all(20)),
-              ElevatedButton(
-                  onPressed: buton
-                      ? () => (giris ? hatamesaji() : anaekranagit())
-                      : null,
-                  child: Text(
-                    "Giriş Yap",
-                    style: TextStyle(color: Colors.black),
-                  )),
-              const Padding(padding: EdgeInsets.all(10)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    girishata,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: const Text("Movieflix"),
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.black,
+          centerTitle: true,
+          toolbarHeight: 50,
         ),
-      ),
-    );
+        body: FutureBuilder(
+          future: _initializeFirebase(),
+          builder: (context, snapshot) {
+            return Center(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Padding(padding: EdgeInsets.all(20)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          girishata,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                    const Padding(padding: EdgeInsets.all(20)),
+                    TextField(
+                      controller: textclearemail,
+                      onChanged: (value) {
+                        emailekle(value);
+                      },
+                      decoration: const InputDecoration(
+                        filled: true,
+                        hintText: "E-posta",
+                        fillColor: Colors.purple,
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.all(20)),
+                    TextField(
+                      obscureText: true,
+                      controller: textclearsifre,
+                      onChanged: (value) {
+                        sifreekle(value);
+                      },
+                      decoration: const InputDecoration(
+                        filled: true,
+                        hintText: "Şifre",
+                        fillColor: Colors.purple,
+                      ),
+                    ),
+                    const Padding(padding: EdgeInsets.all(20)),
+                    ElevatedButton(
+                        onPressed: buton
+                            ? () async {
+                                User? user = await loginUsingEmailPassword(
+                                    email: textclearemail.text,
+                                    password: textclearsifre.text,
+                                    context: context);
+                                print("user $user");
+                                if (user != null) {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const anaekran(),
+                                          settings:
+                                              RouteSettings(arguments: email)));
+                                } else {
+                                  hatamesaji();
+                                }
+                              }
+                            : null,
+                        child: const Text(
+                          "Giriş Yap",
+                          style: TextStyle(color: Colors.black),
+                        )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Kaydol()));
+                            },
+                            child: const Text(
+                              "Kaydol",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ],
+                    ),
+                    const Padding(padding: EdgeInsets.all(10)),
+                  ],
+                ),
+              ),
+            );
+          },
+        ));
   }
 }

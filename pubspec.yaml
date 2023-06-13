@@ -16,6 +16,19 @@ dependencies:
 
   chewie: ^1.4.0
   google_fonts: ^4.0.3
+  animated_bottom_navigation_bar: ^1.2.0
+  path_provider: ^2.0.14
+  http: ^0.13.6
+  open_file_plus: ^3.4.1
+  sqflite: ^2.2.8+2
+  firebase_core:
+  firebase_auth:
+  cloud_firestore:
+  firebase_storage:
+  firebase_messaging:
+  firebase_analytics:
+  charts_flutter: ^0.12.0
+  translator: ^0.1.7
 
 dev_dependencies:
   flutter_test:
@@ -32,25 +45,10 @@ flutter:
 
 
   assets:
-  - assets/resimler/yenifilmler/luther.jpg
-  - assets/resimler/yenifilmler/murdermystery.jpg
-  - assets/resimler/yenifilmler/killboksoon.jpg
-  - assets/resimler/yenifilmler/oldway.jpg
-  - assets/resimler/yenifilmler/kimbuaile.jpg
-  - assets/resimler/yenifilmler/magicianselephant.jpg
-  - assets/resimler/gelecekfilmler/fastx.jpg
-  - assets/resimler/gelecekfilmler/guardiansofgalaxy.jpg
-  - assets/resimler/gelecekfilmler/mario.jpg
-  - assets/resimler/gelecekfilmler/marvels.jpg
-  - assets/resimler/gelecekfilmler/spiderman.jpg
-  - assets/resimler/populerfilmler/blackadam.jpg
-  - assets/resimler/populerfilmler/moonfall.jpg
-  - assets/resimler/populerfilmler/ripd2.jpg
-  - assets/resimler/populerfilmler/venom.jpg
-  - assets/videolar/blackadam.mp4
-  - assets/videolar/moonfall.mp4
-  - assets/videolar/ripd2.mp4
-  - assets/videolar/venom.mp4
+  - assets/resimler/yenifilmler/
+  - assets/resimler/gelecekfilmler/
+  - assets/resimler/populerfilmler/
+  - assets/videolar/
 
 
 
