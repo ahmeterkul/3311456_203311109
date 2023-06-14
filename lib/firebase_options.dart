@@ -47,12 +47,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBnExBhkH_pWuXFXr-wkvbRMZTxYa0tWds',
-    appId: '1:157401583203:web:e986ca619a738facf7f256',
-    messagingSenderId: '157401583203',
-    projectId: 'movieappfirebase-f4baf',
-    authDomain: 'movieappfirebase-f4baf.firebaseapp.com',
-    storageBucket: 'movieappfirebase-f4baf.appspot.com',
+      apiKey: "AIzaSyBnExBhkH_pWuXFXr-wkvbRMZTxYa0tWds",
+      authDomain: "movieappfirebase-f4baf.firebaseapp.com",
+      projectId: "movieappfirebase-f4baf",
+      storageBucket: "movieappfirebase-f4baf.appspot.com",
+      messagingSenderId: "157401583203",
+      appId: "1:157401583203:web:8f732622af9aff02f7f256",
+      measurementId: "G-5H045PK8N1"
   );
 
   static const FirebaseOptions android = FirebaseOptions(

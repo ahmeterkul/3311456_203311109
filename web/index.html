@@ -32,6 +32,24 @@
   <title>film_uygulamasi</title>
   <link rel="manifest" href="manifest.json">
 
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBnExBhkH_pWuXFXr-wkvbRMZTxYa0tWds",
+    authDomain: "movieappfirebase-f4baf.firebaseapp.com",
+    projectId: "movieappfirebase-f4baf",
+    storageBucket: "movieappfirebase-f4baf.appspot.com",
+    messagingSenderId: "157401583203",
+    appId: "1:157401583203:web:8f732622af9aff02f7f256",
+    measurementId: "G-5H045PK8N1"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
